@@ -1,0 +1,7 @@
+name: Stars-React
+markdown: kramdown
+exclude:
+  - public
+  - src
+  - package.json
+source: build/
