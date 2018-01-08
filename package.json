@@ -1,5 +1,5 @@
 {
-  "name": "star",
+  "name": "stars-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,5 +12,6 @@
     "build": "react-scripts build; cd build; mv * .[^.]* ..",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "homepage": "http://josuerz.xyz/Stars-React/"
 }
