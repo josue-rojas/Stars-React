@@ -4,4 +4,6 @@ exclude:
   - public
   - src
   - package.json
-source: build/
+  - README.md
+  - node_modules
+  - npm-debug.log
