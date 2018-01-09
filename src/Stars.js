@@ -34,7 +34,6 @@ class Star extends React.Component{
       height: size,
       // position: position,
     }
-
   }
   componentDidMount(){
     this.timer = setInterval(this.changeColor, getRandomInt(0, 15000));

@@ -7,33 +7,56 @@ import Star from './Stars.js';
 
 let maxShow = window.location.hash.match(/\d+/);
 // # if no digits then return default
-maxShow = maxShow ? parseInt(maxShow[0]) : 1000;
-// console.log(hash)
+maxShow = maxShow ? parseInt(maxShow[0],10) : 1000;
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 class Constillation extends React.Component{
-  createStars(max){
-    let outStar = [];
-    for(let i = 0; i < max; i++){
-      outStar.push(<Star/>)
+  constructor(props){
+    super(props);
+    this.addStar = this.addStar.bind(this);
+    this.state = {
+      max: props.max,
+      stars: [],
     }
-    return outStar;
+  }
+  componentDidMount(){
+    this.timer = setInterval(this.addStar, getRandomInt(0,100));
+  }
+  componentWillUnmount(){
+    clearInterval(this.timer);
+  }
+  addStar(){
+    if(this.state.stars.length < this.state.max){
+      let star = this.state.stars.slice();
+      star.push(<Star/>);
+      this.setState({
+        stars: star,
+      })
+    }
+    else{
+      clearInterval(this.timer);
+    }
   }
   render(){
-    let stars = this.createStars(maxShow);
     return (
       <div>
-        {stars}
+        {this.state.stars}
       </div>
     )
   }
 }
 
-
-
 class Page extends React.Component{
   render(){
     return (
-      <Constillation/>
+      <Constillation
+        max={maxShow}
+      />
     )
   }
 }
