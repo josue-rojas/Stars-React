@@ -18,7 +18,7 @@ npm start
 ### Features:
 
 - Hash URL: /#(number of stars) to set total stars to show
-  - http://josuerz.xyz/#300
+  - http://josuerz.xyz/Stars-React/#300
 - Shooting Star appears when there is less than 301 stars (more might make it slow)
 
 ## Things to do/ and practice
