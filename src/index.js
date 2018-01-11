@@ -1,19 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './main.css';
+import {getRandomInt} from './defaults.js';
 import Star from './Stars.js';
+import ShootingStar from './ShootingStar.js';
 
 
 
 let maxShow = window.location.hash.match(/\d+/);
 // # if no digits then return default
 maxShow = maxShow ? parseInt(maxShow[0],10) : 1000;
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
 
 class Constillation extends React.Component{
   constructor(props){
@@ -22,6 +18,7 @@ class Constillation extends React.Component{
     this.state = {
       max: props.max,
       stars: [],
+      shootingStar: maxShow < 301 ? <ShootingStar/> : [],
     }
   }
   componentDidMount(){
@@ -45,6 +42,7 @@ class Constillation extends React.Component{
   render(){
     return (
       <div>
+        {this.state.shootingStar}
         {this.state.stars}
       </div>
     )

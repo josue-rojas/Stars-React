@@ -1,35 +1,20 @@
 import React from 'react';
+import {starColors, totalColors, getRandomInt} from './defaults.js'
 
 // this is a star object or component
 
-const yellows = ['255,255,224','255,255,0', '239, 224, 88'];
-const totalYellow = yellows.length;
-const whites = ['255, 255, 255', '239, 237, 237', '188, 188, 188'];
-const totalWhites = whites.length;
-
-// maybe should be here
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-
 // timer from https://codepen.io/smonn/pen/KzezEw
-class Star extends React.Component{
+export default class Star extends React.Component{
   constructor(props){
     super(props);
 
     // https://github.com/goatslacker/alt/issues/283
-    this.changeColor = this.changeColor.bind(this)
+    this.changeColor = this.changeColor.bind(this);
     const size = this.getSize();
-    const top = this.getTop();
-    const left = this.getLeft();
-    // const position = Math.random() > .5 ? 'fixed' : 'absolute';
     this.state = {
       border: this.getBorder(),
-      top: top,
-      left: left,
+      top: this.getTop(),
+      left: this.getLeft(),
       width: size,
       height: size,
       // position: position,
@@ -42,10 +27,7 @@ class Star extends React.Component{
     clearInterval(this.timer);
   }
   getBorder(){
-    if(Math.random() > .5){
-      return '1px solid rgb(' + yellows[getRandomInt(0, totalYellow)] + ')';
-    }
-    return '1px solid rgb(' + whites[getRandomInt(0, totalWhites)] + ')';
+    return '1px solid rgb(' + starColors[getRandomInt(0, totalColors)] + ')';
   }
   getSize(){
     return getRandomInt(1, 10);
@@ -67,5 +49,3 @@ class Star extends React.Component{
     )
   }
 }
-
-export default Star;
